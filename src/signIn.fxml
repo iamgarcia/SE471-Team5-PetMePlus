@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignInController">
+   <children>
+      <VBox layoutX="100.0" layoutY="28.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="28.0">
+         <children>
+            <Text fill="#0080ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to PetMe+">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin></Text>
+            <TextField fx:id="emailField" promptText="Email" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="passwordField" promptText="Password" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Text fx:id="errorMessageText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message." visible="false" wrappingWidth="320.0">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonOnAction" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #0080FF; -fx-background-radius: 25;" text="Sign in" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="createAccountButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#createAccountOnAction" prefHeight="40.0" prefWidth="320.0" style="-fx-background-radius: 25; -fx-background-color: #FFFFFF; -fx-border-color: #0080FF; -fx-border-radius: 25;" text="Create Account" textAlignment="CENTER" textFill="#0080ff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateAccountController">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="87.0" layoutY="47.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Text fill="#0080ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Give your pet the care they deserve">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="accountStatus" fill="#19a974" strokeType="OUTSIDE" strokeWidth="0.0" text="Account created." visible="false">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="firstNameField" prefWidth="355.0" promptText="First Name" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="firstNameError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your first name." visible="false">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <TextField fx:id="lastNameField" promptText="Last Name" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="lastNameError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your last name." visible="false">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <TextField fx:id="emailField" promptText="Email" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="emailError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your email address." visible="false">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <PasswordField fx:id="passwordField" promptText="Password" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Text fx:id="passwordError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your password." visible="false">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </PasswordField>
+            <Text fx:id="confirmPasswordError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please confirm your password." visible="false">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="createAccountButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createAccountOnAction" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #0080FF; -fx-background-radius: 25;" text="Create Account" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 25; -fx-border-color: #0080FF; -fx-border-radius: 25;" text="Close" textFill="#0080ff">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
