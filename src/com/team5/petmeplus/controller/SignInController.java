@@ -1,3 +1,5 @@
+package com.team5.petmeplus.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.team5.petmeplus.util.DatabaseConnection;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -83,7 +86,7 @@ public class SignInController {
     @FXML
     public void createAccountOnAction(ActionEvent event) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("view/createAccount.fxml"));
             Stage createAccountStage = new Stage();
             createAccountStage.setScene(new Scene(root, 720, 720));
             createAccountStage.show();

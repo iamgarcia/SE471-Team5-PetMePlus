@@ -1,3 +1,5 @@
+package com.team5.petmeplus.controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -5,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.team5.petmeplus.util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +19,7 @@ import java.util.Locale;
 public class CreateAccountController {
     @FXML
     private Text accountStatus;
-    
+
     @FXML
     private TextField firstNameField;
 
