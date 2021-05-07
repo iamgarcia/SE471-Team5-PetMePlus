@@ -10,7 +10,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("signin.fxml"));
         primaryStage.setTitle("PetMe+");
-        primaryStage.setScene(new Scene(root, 520, 400));
+//        primaryStage.setScene(new Scene(root, 520, 400));
+        primaryStage.setScene(new Scene(root, 900, 600));
         primaryStage.show();
     }
 

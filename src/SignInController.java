@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class SignInController {
-
     @FXML
     private TextField emailField;
 
@@ -32,9 +32,11 @@ public class SignInController {
     private Button createAccountButton;
 
     @FXML
-    public void signInButtonOnAction(ActionEvent event) {
+    public void signInButtonOnAction(ActionEvent event) throws SQLException {
         boolean emptyEmailField = emailField.getText().isBlank();
         boolean emptyPasswordField = passwordField.getText().isBlank();
+
+        errorMessageText.setVisible(false);
 
         if (emptyEmailField || emptyPasswordField) {
             if (emptyEmailField) {
@@ -45,18 +47,13 @@ public class SignInController {
 
             errorMessageText.setVisible(true);
         } else {
-            /*
-             *  Case 1: Invalid email --> "Couldn't find an account associated with this email. Please try again."
-             *  Case 2: Valid email and incorrect password --> "That's not the right password. Try again."
-             * */
             String email = emailField.getText();
             String password = passwordField.getText();
 
             String dbEmail;
             String dbPassword;
 
-            DBConnection connectNow = new DBConnection();
-            Connection connectDB = connectNow.getConnection();
+            Connection connectDB = DatabaseConnection.getInstance().getConnection();
 
             try {
                 PreparedStatement statement = connectDB.prepareStatement("SELECT * FROM signin WHERE email=?");
@@ -64,18 +61,20 @@ public class SignInController {
 
                 ResultSet result = statement.executeQuery();
 
-                if(result.next() == false) {
+                if (result.next() == false) {
                     errorMessageText.setText("Couldn't find an account associated with this email. Please try again.");
+                    errorMessageText.setVisible(true);
                 } else {
                     dbPassword = result.getString("password");
 
-                    if(!password.equals(dbPassword)) {
+                    if (!password.equals(dbPassword)) {
                         errorMessageText.setText("That's not the right password. Try again.");
+                        errorMessageText.setVisible(true);
                     } else {
                         // Go to scene 2
                     }
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -88,7 +87,7 @@ public class SignInController {
             Stage createAccountStage = new Stage();
             createAccountStage.setScene(new Scene(root, 720, 720));
             createAccountStage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

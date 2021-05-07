@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -15,31 +16,42 @@ import java.util.Locale;
 public class CreateAccountController {
     @FXML
     private Text accountStatus;
+    
     @FXML
     private TextField firstNameField;
+
     @FXML
     private Text firstNameError;
+
     @FXML
     private TextField lastNameField;
+
     @FXML
     private Text lastNameError;
+
     @FXML
     private TextField emailField;
+
     @FXML
     private Text emailError;
+
     @FXML
     private PasswordField passwordField;
+
     @FXML
     private Text passwordError;
+
     @FXML
     private PasswordField confirmPasswordField;
+
     @FXML
     private Text confirmPasswordError;
+
     @FXML
     private Button closeButton;
 
     @FXML
-    public void createAccountOnAction(ActionEvent event) {
+    public void createAccountOnAction(ActionEvent event) throws SQLException {
         List<Text> errorList = Arrays.asList(firstNameError, lastNameError, emailError, passwordError, confirmPasswordError);
 
         for (Text error : errorList) {
@@ -88,11 +100,10 @@ public class CreateAccountController {
                 confirmPasswordError.setText("Those passwords didn't match. Try again.");
                 confirmPasswordError.setVisible(true);
             } else {
-                DBConnection connectNow = new DBConnection();
-                Connection connectDB = connectNow.getConnection();
+                Connection connection = DatabaseConnection.getInstance().getConnection();
 
                 try {
-                    PreparedStatement statement = connectDB.prepareStatement("INSERT INTO owner(email, password, first_name, last_name) VALUES(?, ?, ?, ?)");
+                    PreparedStatement statement = connection.prepareStatement("INSERT INTO owner(email, password, first_name, last_name) VALUES(?, ?, ?, ?)");
                     statement.setString(1, email);
                     statement.setString(2, password);
                     statement.setString(3, firstName);
@@ -103,7 +114,7 @@ public class CreateAccountController {
                 }
 
                 try {
-                    PreparedStatement statement = connectDB.prepareStatement("INSERT INTO signin(email, password) VALUES(?, ?)");
+                    PreparedStatement statement = connection.prepareStatement("INSERT INTO signin(email, password) VALUES(?, ?)");
                     statement.setString(1, email);
                     statement.setString(2, password);
                     statement.executeUpdate();
