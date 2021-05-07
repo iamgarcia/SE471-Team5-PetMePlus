@@ -1,3 +1,12 @@
+# PetMe+
+
+## Install Java SDK
+
+## Install JavaFX SDK
+Link to IntelliJ JavaFX SDK installation: 
+<https://www.jetbrains.com/help/idea/javafx.html#download-javafx>.
+
+## Create MySQL Database
 Create a .java file inside the main directory of the PetMePlus project called 
 ```DBConnection.java```. Then, copy the following code into ```DBConnection.java```.
 
