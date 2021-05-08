@@ -14,15 +14,16 @@ public class DatabaseConnection {
             String DB_USER = System.getenv("DB_USER");
             String DB_PASSWORD = System.getenv("DB_PASSWORD");
             String URL = "jdbc:mysql://localhost/" + DB_NAME;
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static DatabaseConnection getInstance() {
+    public static DatabaseConnection getInstance() throws SQLException {
         if (instance == null) {
+            instance = new DatabaseConnection();
+        } else if(instance.getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
 

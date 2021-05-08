@@ -1,5 +1,6 @@
 package com.team5.petmeplus.controller;
 
+import com.team5.petmeplus.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.team5.petmeplus.util.DatabaseConnection;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class SignInController {
     @FXML
@@ -35,7 +29,7 @@ public class SignInController {
     private Button createAccountButton;
 
     @FXML
-    public void signInButtonOnAction(ActionEvent event) throws SQLException {
+    public void signInButtonOnAction(ActionEvent event) {
         boolean emptyEmailField = emailField.getText().isBlank();
         boolean emptyPasswordField = passwordField.getText().isBlank();
 
@@ -53,40 +47,28 @@ public class SignInController {
             String email = emailField.getText();
             String password = passwordField.getText();
 
-            String dbEmail;
-            String dbPassword;
+            Main.owner = Main.ownerDao.getOwnerByEmailAndPassword(email, password);
 
-            Connection connectDB = DatabaseConnection.getInstance().getConnection();
-
-            try {
-                PreparedStatement statement = connectDB.prepareStatement("SELECT * FROM signin WHERE email=?");
-                statement.setString(1, email);
-
-                ResultSet result = statement.executeQuery();
-
-                if (result.next() == false) {
-                    errorMessageText.setText("Couldn't find an account associated with this email. Please try again.");
-                    errorMessageText.setVisible(true);
-                } else {
-                    dbPassword = result.getString("password");
-
-                    if (!password.equals(dbPassword)) {
-                        errorMessageText.setText("That's not the right password. Try again.");
-                        errorMessageText.setVisible(true);
-                    } else {
-                        // Go to scene 2
-                    }
+            if (Main.owner == null) {
+                errorMessageText.setText("Unable to sign in. Please check your email and password and try again.");
+                errorMessageText.setVisible(true);
+            } else {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
+                    Stage dashboard = new Stage();
+                    dashboard.setScene(new Scene(root, 900, 600));
+                    dashboard.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
 
     @FXML
-    public void createAccountOnAction(ActionEvent event) throws IOException {
+    public void createAccountOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("view/createAccount.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/createAccount.fxml"));
             Stage createAccountStage = new Stage();
             createAccountStage.setScene(new Scene(root, 720, 720));
             createAccountStage.show();

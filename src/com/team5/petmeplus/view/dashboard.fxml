@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team5.petmeplus.controller.Dashboard">
+   <children>
+      <HBox prefHeight="50.0" prefWidth="900.0" style="-fx-background-color: #0080FF;">
+         <children>
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="PetMe+" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutY="50.0" prefHeight="550.0" prefWidth="250.0">
+         <children>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 15 15 0 0; -fx-background-color: #FFFFFF;" text="My Account">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 15 15;" text="My Pets">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="249.0" layoutY="50.0" prefHeight="550.0" prefWidth="650.0">
+         <children>
+            <AnchorPane layoutX="3.0" layoutY="30.0" prefHeight="489.0" prefWidth="625.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+               <children>
+                  <VBox prefHeight="489.0" prefWidth="625.0" />
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

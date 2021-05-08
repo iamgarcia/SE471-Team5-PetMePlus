@@ -1,5 +1,7 @@
 package com.team5.petmeplus.controller;
 
+import com.team5.petmeplus.Main;
+import com.team5.petmeplus.model.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,14 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.team5.petmeplus.util.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class CreateAccountController {
     @FXML
@@ -53,76 +50,86 @@ public class CreateAccountController {
     @FXML
     private Button closeButton;
 
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String confirmPassword;
+
+    private boolean isValidFirstName() {
+        if (firstNameField.getText().isBlank()) {
+            firstNameError.setText("Please enter your first name.");
+            firstNameError.setVisible(true);
+            return false;
+        }
+
+        firstName = firstNameField.getText();
+        return true;
+    }
+
+    private boolean isValidLastName() {
+        if (lastNameField.getText().isBlank()) {
+            lastNameError.setText("Please enter your last name.");
+            lastNameError.setVisible(true);
+            return false;
+        }
+
+        lastName = lastNameField.getText();
+        return true;
+    }
+
+    private boolean isValidEmail() {
+        if (emailField.getText().isBlank()) {
+            emailError.setText("Please enter your email address.");
+            emailError.setVisible(true);
+            return false;
+        }
+
+        email = emailField.getText().toLowerCase();
+        return true;
+    }
+
+    private boolean isValidPassword() {
+        if (passwordField.getText().isBlank()) {
+            passwordError.setText("Please enter your password.");
+            passwordError.setVisible(true);
+            return false;
+        }
+
+        password = passwordField.getText();
+        return true;
+    }
+
+    private boolean isValidConfirmPassword() {
+        if (confirmPasswordField.getText().isBlank()) {
+            confirmPasswordError.setText("Please confirm your password.");
+            confirmPasswordError.setVisible(true);
+            return false;
+        }
+
+        confirmPassword = confirmPasswordField.getText();
+        return true;
+    }
+
     @FXML
-    public void createAccountOnAction(ActionEvent event) throws SQLException {
+    public void createAccountOnAction(ActionEvent event) {
         List<Text> errorList = Arrays.asList(firstNameError, lastNameError, emailError, passwordError, confirmPasswordError);
 
         for (Text error : errorList) {
             error.setVisible(false);
         }
 
-        boolean emptyFirstName = firstNameField.getText().isBlank();
-        boolean emptyLastName = lastNameField.getText().isBlank();
-        boolean emptyEmail = emailField.getText().isBlank();
-        boolean emptyPassword = passwordField.getText().isBlank();
-        boolean emptyConfirmPassword = confirmPasswordField.getText().isBlank();
-
-        if (emptyFirstName || emptyLastName || emptyEmail || emptyPassword || emptyConfirmPassword) {
-            if (firstNameField.getText().isBlank()) {
-                firstNameError.setText("Please enter your first name.");
-                firstNameError.setVisible(true);
-            }
-
-            if (lastNameField.getText().isBlank()) {
-                lastNameError.setText("Please enter your last name.");
-                lastNameError.setVisible(true);
-            }
-
-            if (emailField.getText().isBlank()) {
-                emailError.setText("Please enter your email address.");
-                emailError.setVisible(true);
-            }
-
-            if (passwordField.getText().isBlank()) {
-                passwordError.setText("Please enter your password.");
-                passwordError.setVisible(true);
-            }
-
-            if (confirmPasswordField.getText().isBlank()) {
-                confirmPasswordError.setText("Please confirm your password.");
-                confirmPasswordError.setVisible(true);
-            }
-        } else {
-            String firstName = firstNameField.getText();
-            String lastName = lastNameField.getText();
-            String email = emailField.getText().toLowerCase(Locale.ROOT);
-            String password = passwordField.getText();
-            String confirmPassword = confirmPasswordField.getText();
-
+        if (isValidFirstName() & isValidLastName() & isValidEmail() & isValidPassword() & isValidConfirmPassword()) {
             if (!password.equals(confirmPassword)) {
                 confirmPasswordError.setText("Those passwords didn't match. Try again.");
                 confirmPasswordError.setVisible(true);
             } else {
-                Connection connection = DatabaseConnection.getInstance().getConnection();
+                Owner owner = new Owner(firstName, lastName, email, password);
 
-                try {
-                    PreparedStatement statement = connection.prepareStatement("INSERT INTO owner(email, password, first_name, last_name) VALUES(?, ?, ?, ?)");
-                    statement.setString(1, email);
-                    statement.setString(2, password);
-                    statement.setString(3, firstName);
-                    statement.setString(4, lastName);
-                    statement.executeUpdate();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    PreparedStatement statement = connection.prepareStatement("INSERT INTO signin(email, password) VALUES(?, ?)");
-                    statement.setString(1, email);
-                    statement.setString(2, password);
-                    statement.executeUpdate();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (Main.ownerDao.insertOwner(owner)) {
+                    accountStatus.setText("Account created.");
+                } else {
+                    accountStatus.setText("Unable to create account.");
                 }
 
                 accountStatus.setVisible(true);

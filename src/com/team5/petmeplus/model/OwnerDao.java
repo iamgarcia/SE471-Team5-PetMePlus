@@ -7,9 +7,9 @@ public interface OwnerDao {
 
     Owner getOwnerByEmailAndPassword(String email, String password);
 
-    void updateOwner(Owner owner);
+    boolean updateOwner(Owner owner);
 
-    void insertOwner(Owner owner);
+    boolean insertOwner(Owner owner);
 
-    void deleteOwner(Owner owner);
+    boolean deleteOwner(Owner owner);
 }
