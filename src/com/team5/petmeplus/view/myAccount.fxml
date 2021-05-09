@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="489.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team5.petmeplus.controller.MyAccount">
+   <children>
+      <VBox alignment="CENTER" prefHeight="489.0" prefWidth="625.0">
+         <children>
+            <Text fill="#6c757d" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Information">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin></ImageView>
+                  <VBox alignment="BOTTOM_LEFT" prefHeight="150.0" prefWidth="115.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #0080FF; -fx-background-radius: 5;" text="Upload photo" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="firstNameField" style="-fx-border-color: #000000;">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="lastNameField" style="-fx-border-color: #000000;">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #0080FF; -fx-background-radius: 5;" text="Save" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

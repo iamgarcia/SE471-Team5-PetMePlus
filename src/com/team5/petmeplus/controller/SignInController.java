@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class SignInController {
     @FXML
@@ -55,9 +54,8 @@ public class SignInController {
             } else {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("../view/dashboard.fxml"));
-                    Stage dashboard = new Stage();
-                    dashboard.setScene(new Scene(root, 900, 600));
-                    dashboard.show();
+                    Main.getStage().setScene(new Scene(root, 900, 600));
+                    Main.getStage().show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -69,9 +67,8 @@ public class SignInController {
     public void createAccountOnAction(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/createAccount.fxml"));
-            Stage createAccountStage = new Stage();
-            createAccountStage.setScene(new Scene(root, 720, 720));
-            createAccountStage.show();
+            Main.getStage().setScene(new Scene(root, 720, 720));
+            Main.getStage().show();
         } catch (Exception e) {
             e.printStackTrace();
         }

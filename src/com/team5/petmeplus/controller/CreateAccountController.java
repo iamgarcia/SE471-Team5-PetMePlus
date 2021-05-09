@@ -4,6 +4,9 @@ import com.team5.petmeplus.Main;
 import com.team5.petmeplus.model.Owner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -139,7 +142,12 @@ public class CreateAccountController {
 
     @FXML
     public void closeOnAction(ActionEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/signIn.fxml"));
+            Main.getStage().setScene(new Scene(root, 520, 400));
+            Main.getStage().show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

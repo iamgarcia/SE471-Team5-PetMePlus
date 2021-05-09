@@ -19,9 +19,9 @@
       </HBox>
       <VBox alignment="TOP_CENTER" layoutY="50.0" prefHeight="550.0" prefWidth="250.0">
          <children>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 15 15 0 0; -fx-background-color: #FFFFFF;" text="My Account">
+            <Button fx:id="myAccountButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#myAccountOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 15 15 0 0; -fx-background-color: #FFFFFF;" text="My Account" textFill="#6c757d">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <VBox.margin>
                   <Insets top="30.0" />
@@ -29,9 +29,9 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 15 15;" text="My Pets">
+            <Button fx:id="myPetsButton" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#myPetsOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 15 15;" text="My Pets" textFill="#6c757d">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -40,10 +40,7 @@
       </VBox>
       <AnchorPane layoutX="249.0" layoutY="50.0" prefHeight="550.0" prefWidth="650.0">
          <children>
-            <AnchorPane layoutX="3.0" layoutY="30.0" prefHeight="489.0" prefWidth="625.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
-               <children>
-                  <VBox prefHeight="489.0" prefWidth="625.0" />
-               </children></AnchorPane>
+            <AnchorPane fx:id="contentPane" layoutX="3.0" layoutY="30.0" prefHeight="489.0" prefWidth="625.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" />
          </children>
       </AnchorPane>
    </children>

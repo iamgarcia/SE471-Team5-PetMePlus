@@ -64,7 +64,7 @@ public class OwnerDaoImpl implements OwnerDao {
     public boolean updateOwner(Owner owner) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(
-                     "UPDATE owner SET first_name=? AND last_name=? WHERE email=? AND password=?")) {
+                     "UPDATE owner SET first_name=?, last_name=? WHERE email=? AND password=?")) {
             stmt.setString(1, owner.getFirstName());
             stmt.setString(2, owner.getLastName());
             stmt.setString(3, owner.getEmail());
