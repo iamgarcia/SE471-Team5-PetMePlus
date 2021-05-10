@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="489.0" prefWidth="625.0"
+            xmlns="http://javafx.com/javafx/11.0.2" fx:controller="com.team5.petmeplus.controller.AddPetsController">
+    <VBox layoutX="129.0" layoutY="28.0" prefHeight="352.0" prefWidth="367.0">
+        <padding>
+            <Insets bottom="15.0" top="15.0"/>
+        </padding>
+        <VBox alignment="CENTER" prefHeight="16.0" prefWidth="367.0">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+            <Text fill="#6c757d" strokeType="OUTSIDE" strokeWidth="0.0" text="Add A New Member To The Family">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets/>
+                </VBox.margin>
+            </Text>
+        </VBox>
+        <Text fx:id="petStatus" fill="#19a974" strokeType="OUTSIDE" strokeWidth="0.0" text="Pet added." visible="false">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+        </Text>
+        <TextField fx:id="nameField" prefWidth="553.0" promptText="Pet's name" style="-fx-border-color: #000000;">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Text fx:id="nameError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your pet's name."
+              visible="false">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <VBox prefHeight="38.0" prefWidth="367.0">
+            <ChoiceBox fx:id="specieChoiceBox" prefHeight="37.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+                <VBox.margin>
+                    <Insets bottom="5.0"/>
+                </VBox.margin>
+            </ChoiceBox>
+        </VBox>
+        <Text fx:id="specieError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Please select your pet's specie." visible="false">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="breedField" promptText="Pet's breed" style="-fx-border-color: #000000;">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Text fx:id="breedError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your pet's breed."
+              visible="false">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <DatePicker fx:id="birthDatePicker" prefHeight="33.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+            <VBox.margin>
+                <Insets bottom="5.0"/>
+            </VBox.margin>
+        </DatePicker>
+        <Text fx:id="birthDateError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Please select your pet's date of birth." visible="false">
+            <VBox.margin>
+                <Insets bottom="30.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <Button fx:id="addPetButton" mnemonicParsing="false" onAction="#addPetOnAction" prefHeight="38.0"
+                prefWidth="120.0" style="-fx-background-color: #0080FF; -fx-background-radius: 5;" text="Add Pet"
+                textFill="WHITE">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Button>
+    </VBox>
+</AnchorPane>

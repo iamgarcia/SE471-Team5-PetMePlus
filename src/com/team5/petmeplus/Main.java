@@ -1,17 +1,20 @@
 package com.team5.petmeplus;
 
-import com.team5.petmeplus.model.Owner;
-import com.team5.petmeplus.model.OwnerDao;
-import com.team5.petmeplus.model.OwnerDaoImpl;
+import com.team5.petmeplus.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends Application {
     public static OwnerDao ownerDao;
     public static Owner owner;
+    public static PetDao petDao;
+    public static List<Pet> pets = new ArrayList<>();
 
     private static Stage currentStage;
 
@@ -28,6 +31,7 @@ public class Main extends Application {
         currentStage = primaryStage;
 
         ownerDao = new OwnerDaoImpl();
+        petDao = new PetDaoImpl();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/signIn.fxml"));
         primaryStage.setTitle("PetMe+");

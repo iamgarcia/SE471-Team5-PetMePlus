@@ -26,9 +26,9 @@ public class DashboardController {
     public void myAccountOnAction(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/myAccount.fxml"));
-            AnchorPane accountPane = fxmlLoader.load();
+            AnchorPane myAccountPane = fxmlLoader.load();
             contentPane.getChildren().clear();
-            contentPane.getChildren().add(accountPane);
+            contentPane.getChildren().add(myAccountPane);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,9 +38,21 @@ public class DashboardController {
     public void myPetsOnAction(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/myPets.fxml"));
-            AnchorPane petsPane = fxmlLoader.load();
+            AnchorPane myPetsPane = fxmlLoader.load();
             contentPane.getChildren().clear();
-            contentPane.getChildren().add(petsPane);
+            contentPane.getChildren().add(myPetsPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void addPetsOnAction(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/addPets.fxml"));
+            AnchorPane addPetsPane = fxmlLoader.load();
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(addPetsPane);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +64,9 @@ public class DashboardController {
             Parent root = FXMLLoader.load(getClass().getResource("../view/signIn.fxml"));
             Main.getStage().setScene(new Scene(root, 520, 400));
             Main.getStage().show();
+
             Main.owner = null;
+            Main.pets = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
