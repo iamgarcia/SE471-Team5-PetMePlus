@@ -6,38 +6,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
 
 public class OwnerDaoImpl implements OwnerDao {
     private Owner extractOwnerFromResultSet(ResultSet rs) throws SQLException {
-        Owner owner = new Owner();
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        String firstName = rs.getString("first_name");
+        String lastName = rs.getString("last_name");
+        String phone = rs.getString("phone");
+        String address = rs.getString("address");
 
-        owner.setFirstName(rs.getString("first_name"));
-        owner.setLastName(rs.getString("last_name"));
-        owner.setEmail(rs.getString("email"));
-        owner.setPassword(rs.getString("password"));
-
-        return owner;
-    }
-
-    @Override
-    public Set<Owner> getAllOwners() {
-        Set<Owner> owners = new HashSet<>();
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM owner")) {
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Owner owner = extractOwnerFromResultSet(rs);
-                    owners.add(owner);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return owners;
+        return new Owner.OwnerBuilder(email, password, firstName, lastName)
+                .phone(phone)
+                .address(address)
+                .build();
     }
 
     @Override
@@ -64,9 +46,9 @@ public class OwnerDaoImpl implements OwnerDao {
     public boolean updateOwner(Owner owner) {
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(
-                     "UPDATE owner SET first_name=?, last_name=? WHERE email=? AND password=?")) {
-            stmt.setString(1, owner.getFirstName());
-            stmt.setString(2, owner.getLastName());
+                     "UPDATE owner SET phone=?, address=? WHERE email=? AND password=?")) {
+            stmt.setString(1, owner.getPhone());
+            stmt.setString(2, owner.getAddress());
             stmt.setString(3, owner.getEmail());
             stmt.setString(4, owner.getPassword());
             int i = stmt.executeUpdate();

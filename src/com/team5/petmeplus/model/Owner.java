@@ -1,51 +1,82 @@
 package com.team5.petmeplus.model;
 
 public class Owner {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+    private final String email;
+    private final String password;
+    private final String firstName;
+    private final String lastName;
+    private String phone;
+    private String address;
 
-    public Owner() {
-
-    }
-
-    public Owner(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
+    public Owner(OwnerBuilder builder) {
+        this.email = builder.email;
+        this.password = builder.password;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.phone = builder.phone;
+        this.address = builder.address;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public static class OwnerBuilder {
+        private final String email;
+        private final String password;
+        private final String firstName;
+        private final String lastName;
+        private String phone;
+        private String address;
+
+        public OwnerBuilder(String email, String password, String firstName, String lastName) {
+            this.email = email;
+            this.password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        public OwnerBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public OwnerBuilder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Owner build() {
+            Owner owner = new Owner(this);
+            return owner;
+        }
     }
 }

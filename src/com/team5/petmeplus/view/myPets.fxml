@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<AnchorPane prefHeight="489.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team5.petmeplus.controller.MyPets">
-   <children>
-      <Text layoutX="301.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pet" />
-   </children>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="489.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team5.petmeplus.controller.MyPetsController">
+   <Text layoutX="301.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pet"/>
 </AnchorPane>

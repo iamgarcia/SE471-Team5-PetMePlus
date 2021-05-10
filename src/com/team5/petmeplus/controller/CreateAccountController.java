@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -127,9 +126,10 @@ public class CreateAccountController {
                 confirmPasswordError.setText("Those passwords didn't match. Try again.");
                 confirmPasswordError.setVisible(true);
             } else {
-                Owner owner = new Owner(firstName, lastName, email, password);
+                Main.owner = new Owner.OwnerBuilder(email, password, firstName, lastName)
+                        .build();
 
-                if (Main.ownerDao.insertOwner(owner)) {
+                if (Main.ownerDao.insertOwner(Main.owner)) {
                     accountStatus.setText("Account created.");
                 } else {
                     accountStatus.setText("Unable to create account.");
@@ -146,7 +146,7 @@ public class CreateAccountController {
             Parent root = FXMLLoader.load(getClass().getResource("../view/signIn.fxml"));
             Main.getStage().setScene(new Scene(root, 520, 400));
             Main.getStage().show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

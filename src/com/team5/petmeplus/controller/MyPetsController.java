@@ -1,4 +1,4 @@
 package com.team5.petmeplus.controller;
 
-public class MyPets {
+public class MyPetsController {
 }
