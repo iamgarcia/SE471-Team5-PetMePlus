@@ -1,7 +1,7 @@
 package com.team5.petmeplus.model;
 
 import com.team5.petmeplus.Main;
-import com.team5.petmeplus.util.DatabaseConnection;
+import com.team5.petmeplus.util.DatabaseConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class PetDaoImpl implements PetDao {
     @Override
     public Set<Pet> getPetsByOwnerEmail(String email) {
         Set<Pet> pets = new HashSet<>();
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
              PreparedStatement stmt = conn.prepareStatement("SELECT * FROM pet WHERE owner_email=?")) {
             stmt.setString(1, Main.owner.getEmail());
 
@@ -33,6 +33,8 @@ public class PetDaoImpl implements PetDao {
                     Pet pet = extractPetFromResultSet(rs);
                     pets.add(pet);
                 }
+            } finally {
+                DatabaseConnectionPool.getInstance().checkinObject(conn);
             }
 
         } catch (SQLException e) {
@@ -44,7 +46,7 @@ public class PetDaoImpl implements PetDao {
 
     @Override
     public boolean insertPet(Pet pet) {
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
              PreparedStatement stmt = conn.prepareStatement(
                      "INSERT INTO pet (name, specie, breed, birth_date) VALUES (?, ?, ?, ?)")) {
             stmt.setString(1, pet.getName());
@@ -53,6 +55,8 @@ public class PetDaoImpl implements PetDao {
             java.sql.Date sqlDate = new java.sql.Date(pet.getBirthDate().getTime());
             stmt.setDate(4, sqlDate);
             int i = stmt.executeUpdate();
+
+            DatabaseConnectionPool.getInstance().checkinObject(conn);
 
             if (i == 1) {
                 return true;
@@ -66,10 +70,12 @@ public class PetDaoImpl implements PetDao {
 
     @Override
     public boolean deletePet(Pet pet) {
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
              PreparedStatement stmt = conn.prepareStatement("DELETE FROM pet WHERE owner_email=?")) {
             stmt.setString(1, Main.owner.getEmail());
             int i = stmt.executeUpdate();
+
+            DatabaseConnectionPool.getInstance().checkinObject(conn);
 
             if (i == 1) {
                 return true;

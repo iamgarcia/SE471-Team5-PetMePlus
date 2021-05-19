@@ -1,6 +1,6 @@
 package com.team5.petmeplus.model;
 
-import com.team5.petmeplus.util.DatabaseConnection;
+import com.team5.petmeplus.util.DatabaseConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class OwnerDaoImpl implements OwnerDao {
 
     @Override
     public Owner getOwnerByEmailAndPassword(String email, String password) {
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
              PreparedStatement stmt = conn.prepareStatement(
                      "SELECT * FROM owner WHERE email=? AND password=?")) {
             stmt.setString(1, email);
@@ -34,6 +34,8 @@ public class OwnerDaoImpl implements OwnerDao {
                 if (rs.next()) {
                     return extractOwnerFromResultSet(rs);
                 }
+            } finally {
+                DatabaseConnectionPool.getInstance().checkinObject(conn);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,14 +46,16 @@ public class OwnerDaoImpl implements OwnerDao {
 
     @Override
     public boolean updateOwner(Owner owner) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = connection.prepareStatement(
-                     "UPDATE owner SET phone=?, address=? WHERE email=? AND password=?")) {
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "UPDATE owner SET phone=?,  address=? WHERE email=? AND password=?")) {
             stmt.setString(1, owner.getPhone());
             stmt.setString(2, owner.getAddress());
             stmt.setString(3, owner.getEmail());
             stmt.setString(4, owner.getPassword());
             int i = stmt.executeUpdate();
+
+            DatabaseConnectionPool.getInstance().checkinObject(conn);
 
             if (i == 1) {
                 return true;
@@ -65,14 +69,16 @@ public class OwnerDaoImpl implements OwnerDao {
 
     @Override
     public boolean insertOwner(Owner owner) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = connection.prepareStatement(
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
+             PreparedStatement stmt = conn.prepareStatement(
                      "INSERT INTO owner (email, password, first_name, last_name) VALUES (?, ?, ?, ?)")) {
             stmt.setString(1, owner.getEmail());
             stmt.setString(2, owner.getPassword());
             stmt.setString(3, owner.getFirstName());
             stmt.setString(4, owner.getLastName());
             int i = stmt.executeUpdate();
+
+            DatabaseConnectionPool.getInstance().checkinObject(conn);
 
             if (i == 1) {
                 return true;
@@ -86,12 +92,14 @@ public class OwnerDaoImpl implements OwnerDao {
 
     @Override
     public boolean deleteOwner(Owner owner) {
-        try (Connection connection = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = connection.prepareStatement(
+        try (Connection conn = DatabaseConnectionPool.getInstance().checkoutObject();
+             PreparedStatement stmt = conn.prepareStatement(
                      "DELETE FROM owner WHERE email=? AND password=?")) {
             stmt.setString(1, owner.getEmail());
             stmt.setString(2, owner.getPassword());
             int i = stmt.executeUpdate();
+
+            DatabaseConnectionPool.getInstance().checkinObject(conn);
 
             if (i == 1) {
                 return true;

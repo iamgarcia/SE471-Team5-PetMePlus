@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddPetsController implements Initializable {
-    private final String[] species = {"Dog", "Cat", "Hamster", "Bird"};
+    private final String[] species = {"Dog", "Cat"};
     @FXML
     private Text petStatus;
     @FXML

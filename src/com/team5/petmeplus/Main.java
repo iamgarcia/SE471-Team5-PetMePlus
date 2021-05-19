@@ -1,6 +1,7 @@
 package com.team5.petmeplus;
 
 import com.team5.petmeplus.model.*;
+import com.team5.petmeplus.util.DatabaseConnectionPool;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,9 +16,7 @@ public class Main extends Application {
     public static Owner owner;
     public static PetDao petDao;
     public static List<Pet> pets = new ArrayList<>();
-
     private static Stage currentStage;
-
     public static Stage getStage() {
         return currentStage;
     }
@@ -29,7 +28,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         currentStage = primaryStage;
-
         ownerDao = new OwnerDaoImpl();
         petDao = new PetDaoImpl();
 
