@@ -5,6 +5,7 @@ import com.team5.petmeplus.model.Pet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -20,14 +21,19 @@ import java.util.ResourceBundle;
 
 public class AddPetsController implements Initializable {
     private final String[] species = {"Dog", "Cat"};
+
     @FXML
     private Text petStatus;
+
     @FXML
     private TextField nameField;
+
     @FXML
     private Text nameError;
+
     @FXML
     private ChoiceBox<String> specieChoiceBox;
+
     @FXML
     private Text specieError;
 
@@ -42,6 +48,9 @@ public class AddPetsController implements Initializable {
 
     @FXML
     private Text birthDateError;
+
+    @FXML
+    private Button addPetButton;
 
     private String name;
     private String specie;

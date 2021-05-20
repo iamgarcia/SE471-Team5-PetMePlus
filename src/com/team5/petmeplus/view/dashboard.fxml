@@ -1,69 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/11.0.2"
-            fx:controller="com.team5.petmeplus.controller.DashboardController">
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team5.petmeplus.controller.DashboardController">
     <HBox prefHeight="50.0" prefWidth="900.0" style="-fx-background-color: #0080FF;">
         <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="PetMe+" textFill="WHITE">
             <font>
-                <Font size="25.0"/>
+                <Font size="25.0" />
             </font>
         </Label>
     </HBox>
     <VBox alignment="TOP_CENTER" layoutY="50.0" prefHeight="550.0" prefWidth="250.0">
-        <Button fx:id="myAccountButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
-                onAction="#myAccountOnAction" prefHeight="50.0" prefWidth="200.0"
-                style="-fx-background-radius: 15 15 0 0; -fx-background-color: #FFFFFF;" text="My Account"
-                textFill="#6c757d">
+        <Button fx:id="myAccountButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#myAccountOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 15 15 0 0; -fx-background-color: #FFFFFF;" text="My Account" textFill="#6c757d">
             <font>
-                <Font name="System Bold" size="15.0"/>
+                <Font name="System Bold" size="15.0" />
             </font>
             <VBox.margin>
-                <Insets top="30.0"/>
+                <Insets top="30.0" />
             </VBox.margin>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="myPetsButton" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" onAction="#myPetsOnAction"
-                prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="My Pets"
-                textFill="#6c757d">
+        <Button fx:id="myPetsButton" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" onAction="#myPetsOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="My Pets" textFill="#6c757d">
             <font>
-                <Font name="System Bold" size="15.0"/>
+                <Font name="System Bold" size="15.0" />
             </font>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="addPetsButton" layoutX="35.0" layoutY="90.0" mnemonicParsing="false" onAction="#addPetsOnAction"
-                prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Add Pets"
-                textFill="#6c757d">
+        <Button fx:id="addPetsButton" layoutX="35.0" layoutY="90.0" mnemonicParsing="false" onAction="#addPetsOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Add Pets" textFill="#6c757d">
             <font>
-                <Font name="System Bold" size="15.0"/>
+                <Font name="System Bold" size="15.0" />
             </font>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="signOutButton" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#signOutOnAction"
-                prefHeight="50.0" prefWidth="200.0"
-                style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 15 15;" text="Logout"
-                textFill="#6c757d">
+      <Button fx:id="servicesButton" layoutX="35.0" layoutY="140.0" mnemonicParsing="false" onAction="#servicesOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Services" textFill="#6c757d">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+        <Button fx:id="signOutButton" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#signOutOnAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 15 15;" text="Logout" textFill="#6c757d">
             <font>
-                <Font name="System Bold" size="15.0"/>
+                <Font name="System Bold" size="15.0" />
             </font>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
     </VBox>
     <AnchorPane layoutX="249.0" layoutY="50.0" prefHeight="550.0" prefWidth="650.0">
-        <AnchorPane fx:id="contentPane" layoutX="3.0" layoutY="30.0" prefHeight="489.0" prefWidth="625.0"
-                    style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;"/>
+        <AnchorPane fx:id="contentPane" layoutX="3.0" layoutY="30.0" prefHeight="489.0" prefWidth="625.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" />
     </AnchorPane>
 </AnchorPane>

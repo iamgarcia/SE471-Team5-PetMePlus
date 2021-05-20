@@ -17,6 +17,12 @@ public class DashboardController {
     Button myPetsButton;
 
     @FXML
+    Button addPetsButton;
+
+    @FXML
+    Button servicesButton;
+
+    @FXML
     Button signOutButton;
 
     @FXML
@@ -53,6 +59,18 @@ public class DashboardController {
             AnchorPane addPetsPane = fxmlLoader.load();
             contentPane.getChildren().clear();
             contentPane.getChildren().add(addPetsPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void servicesOnAction(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/services.fxml"));
+            AnchorPane addServicesPane = fxmlLoader.load();
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(addServicesPane);
         } catch (Exception e) {
             e.printStackTrace();
         }

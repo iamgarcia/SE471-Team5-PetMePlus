@@ -1,5 +1,7 @@
 package com.team5.petmeplus;
 
+import com.team5.petmeplus.api.Business;
+import com.team5.petmeplus.api.YelpApi;
 import com.team5.petmeplus.model.*;
 import com.team5.petmeplus.util.DatabaseConnectionPool;
 import javafx.application.Application;
@@ -14,8 +16,10 @@ import java.util.List;
 public class Main extends Application {
     public static OwnerDao ownerDao;
     public static Owner owner;
+    public static YelpApi yelpApi;
     public static PetDao petDao;
     public static List<Pet> pets = new ArrayList<>();
+    public static List<Business> businesses = new ArrayList<>();
     private static Stage currentStage;
     public static Stage getStage() {
         return currentStage;
@@ -30,6 +34,7 @@ public class Main extends Application {
         currentStage = primaryStage;
         ownerDao = new OwnerDaoImpl();
         petDao = new PetDaoImpl();
+        yelpApi = new YelpApi();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/signIn.fxml"));
         primaryStage.setTitle("PetMe+");
